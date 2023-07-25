@@ -1,4 +1,3 @@
-import { v4 as uuidv4, v5 as uuidv5 } from "uuid";
 import Checkbox from "./buttons/checkbox";
 
 export default function FilterBar({ mapPositions, handleFilter }) {
