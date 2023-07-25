@@ -13,80 +13,41 @@ import GrenadeThumbnail from "../components/grenade_thumbnail";
 
 export default function GrenadesFilter() {
   const [docs, setDocs] = useState([]);
-  const [tickRateFilter, setTickRateFilter] = useState([]);
-  const [fromFilter, setFromFilter] = useState([]);
-  const [toFilter, setToFilter] = useState([]);
 
-  const [compostiteFilter, setCompositeFilter] = useState([
-    {
-      tick_rate: [],
-      from: [],
-      to: [],
-    },
-  ]);
+  const [compostiteFilter, setCompositeFilter] = useState({
+    tick_rate: [],
+    from: [],
+    to: [],
+  });
 
   const mapPositions = ["t_base", "short", "long", "CT"];
 
   function handleFilter(checked, name, value) {
-    if (name === "from") {
-      if (checked) {
-      }
-    }
-  }
-
-  function handleTickRateFilter(checked, value) {
     if (checked) {
-      setTickRateFilter((tickRateFilter) => [...tickRateFilter, value]);
+      setCompositeFilter({
+        ...compostiteFilter,
+        [name]: [...compostiteFilter[name], value],
+      });
     } else {
-      setTickRateFilter((tickRateFilter) => {
-        return tickRateFilter.filter((tickRate) => tickRate !== value);
+      setCompositeFilter({
+        ...compostiteFilter,
+        [name]: compostiteFilter[name].filter((position) => position !== value),
       });
     }
   }
-
-  function handleFromFilter(checked, value) {
-    if (checked) {
-      setFromFilter((fromFilter) => [...fromFilter, value]);
-    } else {
-      setFromFilter((fromFilter) => {
-        return fromFilter.filter((from) => from !== value);
-      });
-    }
-  }
-
-  function handleToFilter(checked, value) {
-    if (checked) {
-      setToFilter((toFilter) => [...toFilter, value]);
-    } else {
-      setToFilter((toFilter) => {
-        return toFilter.filter((to) => to !== value);
-      });
-    }
-  }
-
-  var filteredProducts;
-  if (
-    tickRateFilter.length === 0 &&
-    fromFilter.length === 0 &&
-    toFilter.length === 0
-  ) {
-    filteredProducts = docs;
-  } else {
-    filteredProducts = docs.filter((doc) => {
-      return (
-        tickRateFilter.includes(doc.tick_rate) &&
-        fromFilter.includes(doc.from) &&
-        toFilter.includes(doc.to)
-      );
-    });
-  }
-
-  // const filteredProducts =
-  //   tickRateFilter.length === 0
-  //     ? docs
-  //     : docs.filter((doc) => {
-  //         return tickRateFilter.includes(doc.tick_rate);
-  //       });
+  var filteredProducts = docs.filter((doc) => {
+    return (
+      (compostiteFilter.tick_rate.length === 0
+        ? true
+        : compostiteFilter.tick_rate.includes(doc.tick_rate)) &&
+      (compostiteFilter.from.length === 0
+        ? true
+        : compostiteFilter.from.includes(doc.from)) &&
+      (compostiteFilter.to.length === 0
+        ? true
+        : compostiteFilter.to.includes(doc.to))
+    );
+  });
 
   async function getGrenades() {
     setDocs(() => []);
@@ -115,12 +76,7 @@ export default function GrenadesFilter() {
         </button>
 
         <section>
-          <FilterBar
-            mapPositions={mapPositions}
-            handleTickRateFilter={handleTickRateFilter}
-            handleFromFilter={handleFromFilter}
-            handleToFilter={handleToFilter}
-          />
+          <FilterBar mapPositions={mapPositions} handleFilter={handleFilter} />
         </section>
       </div>
       <section className="ml-32 self-center">
