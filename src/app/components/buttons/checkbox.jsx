@@ -6,6 +6,7 @@ export default function Checkbox({ label, handleFilter }) {
         value={label}
         onChange={(e) => handleFilter(e.target.checked, label)}
         type="checkbox"
+        name="from"
         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
       />
 

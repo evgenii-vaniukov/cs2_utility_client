@@ -17,7 +17,22 @@ export default function GrenadesFilter() {
   const [fromFilter, setFromFilter] = useState([]);
   const [toFilter, setToFilter] = useState([]);
 
+  const [compostiteFilter, setCompositeFilter] = useState([
+    {
+      tick_rate: [],
+      from: [],
+      to: [],
+    },
+  ]);
+
   const mapPositions = ["t_base", "short", "long", "CT"];
+
+  function handleFilter(checked, name, value) {
+    if (name === "from") {
+      if (checked) {
+      }
+    }
+  }
 
   function handleTickRateFilter(checked, value) {
     if (checked) {
