@@ -1,11 +1,10 @@
-export default function Checkbox({ label, onChange }) {
+export default function Checkbox({ label, handleFilter }) {
   return (
     <div className="relative flex items-start">
       <input
         id={label}
-        aria-describedby="comments-description"
         value={label}
-        onChange={onChange}
+        onChange={(e) => handleFilter(e.target.checked, label)}
         type="checkbox"
         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
       />

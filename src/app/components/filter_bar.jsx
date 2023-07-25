@@ -1,13 +1,30 @@
 import { v4 as uuidv4, v5 as uuidv5 } from "uuid";
 import Checkbox from "./buttons/checkbox";
 
-export default function FilterBar({ mapPositions }) {
+export default function FilterBar({
+  mapPositions,
+  handleTickRateFilter,
+  handleFromFilter,
+  handleToFilter,
+}) {
   const from = mapPositions.map((position) => {
-    return <Checkbox key={uuidv4()} label={position}></Checkbox>;
+    return (
+      <Checkbox
+        key={position}
+        label={position}
+        handleFilter={handleFromFilter}
+      ></Checkbox>
+    );
   });
 
   const to = mapPositions.map((position) => {
-    return <Checkbox key={uuidv4()} label={position}></Checkbox>;
+    return (
+      <Checkbox
+        key={position}
+        label={position}
+        handleFilter={handleToFilter}
+      ></Checkbox>
+    );
   });
 
   const t = <p>try</p>;
@@ -16,8 +33,12 @@ export default function FilterBar({ mapPositions }) {
     <>
       <section>
         <p>Tick Rate</p>
-        <Checkbox label={64}></Checkbox>
-        <Checkbox label={128}></Checkbox>
+        <Checkbox
+          key={64}
+          label={64}
+          handleFilter={handleTickRateFilter}
+        ></Checkbox>
+        <Checkbox label={128} handleFilter={handleTickRateFilter}></Checkbox>
       </section>
       <section>
         <p>From</p>

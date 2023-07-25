@@ -13,8 +13,65 @@ import GrenadeThumbnail from "../components/grenade_thumbnail";
 
 export default function GrenadesFilter() {
   const [docs, setDocs] = useState([]);
+  const [tickRateFilter, setTickRateFilter] = useState([]);
+  const [fromFilter, setFromFilter] = useState([]);
+  const [toFilter, setToFilter] = useState([]);
 
-  const mapPositions = ["short", "long", "CT"];
+  const mapPositions = ["t_base", "short", "long", "CT"];
+
+  function handleTickRateFilter(checked, value) {
+    if (checked) {
+      setTickRateFilter((tickRateFilter) => [...tickRateFilter, value]);
+    } else {
+      setTickRateFilter((tickRateFilter) => {
+        return tickRateFilter.filter((tickRate) => tickRate !== value);
+      });
+    }
+  }
+
+  function handleFromFilter(checked, value) {
+    if (checked) {
+      setFromFilter((fromFilter) => [...fromFilter, value]);
+    } else {
+      setFromFilter((fromFilter) => {
+        return fromFilter.filter((from) => from !== value);
+      });
+    }
+  }
+
+  function handleToFilter(checked, value) {
+    if (checked) {
+      setToFilter((toFilter) => [...toFilter, value]);
+    } else {
+      setToFilter((toFilter) => {
+        return toFilter.filter((to) => to !== value);
+      });
+    }
+  }
+
+  var filteredProducts;
+  if (
+    tickRateFilter.length === 0 &&
+    fromFilter.length === 0 &&
+    toFilter.length === 0
+  ) {
+    filteredProducts = docs;
+  } else {
+    filteredProducts = docs.filter((doc) => {
+      return (
+        tickRateFilter.includes(doc.tick_rate) &&
+        fromFilter.includes(doc.from) &&
+        toFilter.includes(doc.to)
+      );
+    });
+  }
+
+  // const filteredProducts =
+  //   tickRateFilter.length === 0
+  //     ? docs
+  //     : docs.filter((doc) => {
+  //         return tickRateFilter.includes(doc.tick_rate);
+  //       });
 
   async function getGrenades() {
     setDocs(() => []);
@@ -35,14 +92,6 @@ export default function GrenadesFilter() {
     });
   }
 
-  function filterDocs(position) {
-    const filteredDocs = docs.filter((doc) => {
-      return doc.from === "t_base";
-    });
-
-    setDocs(() => filteredDocs);
-  }
-
   return (
     <div className="flex">
       <div className="flex flex-col">
@@ -50,17 +99,17 @@ export default function GrenadesFilter() {
           Get Grenades
         </button>
 
-        <FilterBar mapPositions={mapPositions} />
-
         <section>
-          <FilterBar mapPositions={mapPositions} />
-          <button className="mt-6" onClick={filterDocs}>
-            Filter Docs
-          </button>
+          <FilterBar
+            mapPositions={mapPositions}
+            handleTickRateFilter={handleTickRateFilter}
+            handleFromFilter={handleFromFilter}
+            handleToFilter={handleToFilter}
+          />
         </section>
       </div>
       <section className="ml-32 self-center">
-        {docs.map((doc) => {
+        {filteredProducts.map((doc) => {
           return <GrenadeThumbnail key={uuidv4()} doc={doc}></GrenadeThumbnail>;
         })}
       </section>
