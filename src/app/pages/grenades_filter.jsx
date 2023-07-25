@@ -13,7 +13,6 @@ import GrenadeThumbnail from "../components/grenade_thumbnail";
 
 export default function GrenadesFilter() {
   const [docs, setDocs] = useState([]);
-
   const [compostiteFilter, setCompositeFilter] = useState({
     tick_rate: [],
     from: [],
