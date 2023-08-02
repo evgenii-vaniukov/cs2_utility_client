@@ -1,10 +1,22 @@
-export default function Checkbox({ label, name, handleFilter }) {
+export default function Checkbox({
+  label,
+  name,
+  handleFilter,
+  getMapPositions,
+}) {
   return (
     <div className="relative flex items-start">
       <input
         id={label}
         value={label}
-        onChange={(e) => handleFilter(e.target.checked, e.target.name, label)}
+        onChange={
+          name === "map_name"
+            ? (e) => {
+                handleFilter(e.target.checked, e.target.name, e.target.value);
+                getMapPositions(label, e.target.checked);
+              }
+            : (e) => handleFilter(e.target.checked, e.target.name, label)
+        }
         type="checkbox"
         name={name}
         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"

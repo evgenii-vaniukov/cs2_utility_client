@@ -1,6 +1,36 @@
-import Checkbox from "./buttons/checkbox";
+import Checkbox from "./checkbox";
 
-export default function FilterBar({ mapPositions, handleFilter }) {
+export default function FilterBar({
+  map_names,
+  mapPositions,
+  grenade_types,
+  handleFilter,
+  getMapPositions,
+  mapPositionsLength,
+}) {
+  const maps = map_names.map((map) => {
+    return (
+      <Checkbox
+        key={map}
+        label={map}
+        name="map_name"
+        handleFilter={handleFilter}
+        getMapPositions={getMapPositions}
+      ></Checkbox>
+    );
+  });
+
+  const types = grenade_types.map((type) => {
+    return (
+      <Checkbox
+        key={type}
+        label={type}
+        name="type"
+        handleFilter={handleFilter}
+      ></Checkbox>
+    );
+  });
+
   const from = mapPositions.map((position) => {
     return (
       <Checkbox
@@ -28,6 +58,10 @@ export default function FilterBar({ mapPositions, handleFilter }) {
   return (
     <>
       <section>
+        <p>Maps</p>
+        {maps}
+      </section>
+      <section>
         <p>Tick Rate</p>
         <Checkbox
           key={64}
@@ -43,11 +77,15 @@ export default function FilterBar({ mapPositions, handleFilter }) {
         ></Checkbox>
       </section>
       <section>
-        <p>From</p>
+        <p>Grenade Type</p>
+        {types}
+      </section>
+      <section>
+        {mapPositionsLength > 0 ? <p>From</p> : <></>}
         {from}
       </section>
       <section>
-        <p>To</p>
+        {mapPositionsLength > 0 ? <p>To</p> : <></>}
         {to}
       </section>
     </>

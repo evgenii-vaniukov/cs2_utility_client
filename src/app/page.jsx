@@ -1,10 +1,10 @@
 "use client";
-import GrenadesFilter from "./pages/grenades_filter";
+import Grenades from "./pages/grenades";
 
 export default function App() {
   return (
     <div>
-      <GrenadesFilter />
+      <Grenades />
     </div>
   );
 }
