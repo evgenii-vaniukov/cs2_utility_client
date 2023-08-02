@@ -55,7 +55,7 @@ export default function GrenadesFilter() {
     );
 
     querySnapshot.forEach((doc) => {
-      setMapPositions((docs) => [...docs, doc.data().position_name]);
+      setMapPositions((docs) => [...docs, doc.data().position_code]);
     });
   }
 
