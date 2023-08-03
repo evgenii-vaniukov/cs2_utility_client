@@ -22,7 +22,14 @@ export default function GrenadesFilter() {
   const [mapPositions, setMapPositions] = useState([]);
 
   const grenade_types = ["smoke", "flash", "molotov", "he", "one_way_smoke"];
-  const map_names = ["dust_2", "mirage", "inferno", "nuke", "overpass"];
+  const map_names = [
+    "Ancient",
+    "dust_2",
+    "mirage",
+    "inferno",
+    "nuke",
+    "overpass",
+  ];
 
   useEffect(() => {
     let ignore = false;
@@ -55,7 +62,13 @@ export default function GrenadesFilter() {
     );
 
     querySnapshot.forEach((doc) => {
-      setMapPositions((docs) => [...docs, doc.data().position_code]);
+      setMapPositions((docs) => [
+        ...docs,
+        {
+          position_code: doc.data().position_code,
+          position_name: doc.data().position_name,
+        },
+      ]);
     });
   }
 
