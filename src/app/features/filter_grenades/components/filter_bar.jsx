@@ -34,9 +34,10 @@ export default function FilterBar({
   const from = mapPositions.map((position) => {
     return (
       <Checkbox
-        key={position}
-        label={position}
+        key={position.position_code}
+        label={position.position_code}
         name="from"
+        position_full_name={position.position_name}
         handleFilter={handleFilter}
       ></Checkbox>
     );
@@ -45,9 +46,10 @@ export default function FilterBar({
   const to = mapPositions.map((position) => {
     return (
       <Checkbox
-        key={position}
-        label={position}
+        key={position.position_code}
+        label={position.position_code}
         name="to"
+        position_full_name={position.position_name}
         handleFilter={handleFilter}
       ></Checkbox>
     );
