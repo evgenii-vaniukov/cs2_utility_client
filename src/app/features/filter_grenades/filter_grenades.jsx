@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import {
   DocumentData,
   collection,
@@ -9,11 +10,13 @@ import {
 import { db } from "../../../../firebase";
 import FilterBar from "./components/filter_bar";
 import GrenadeThumbnail from "./components/grenade_thumbnail";
+import Card from "./components/card";
 
 export default function GrenadesFilter() {
   const [docs, setDocs] = useState([]);
   const [compostiteFilter, setCompositeFilter] = useState({
     map_name: [],
+    side: [],
     tick_rate: [],
     type: [],
     from: [],
@@ -21,23 +24,56 @@ export default function GrenadesFilter() {
   });
   const [mapPositions, setMapPositions] = useState([]);
 
-  const grenade_types = ["smoke", "flash", "molotov", "he", "one_way_smoke"];
+  const sides = [
+    { side_code: "t_side", side_full_name: "Terrorists" },
+    { side_code: "ct_side", side_full_name: "Counter Terrorists" },
+  ];
+  const grenade_types = [
+    {
+      grenade_code: "smoke",
+      grenade_full_name: "Smoke",
+    },
+    {
+      grenade_code: "flash",
+      grenade_full_name: "Flash",
+    },
+    {
+      grenade_code: "molotov",
+
+      grenade_full_name: "Molotov",
+    },
+    {
+      grenade_code: "he",
+      grenade_full_name: "High Explosive",
+    },
+    {
+      grenade_code: "one_way_smoke",
+      grenade_full_name: "One Way Smoke",
+    },
+  ];
+
   const map_names = [
-    "Ancient",
-    "dust_2",
-    "mirage",
-    "inferno",
-    "nuke",
-    "overpass",
+    { map_code: "mirage", map_full_name: "Mirage" },
+
+    { map_code: "inferno", map_full_name: "Inferno" },
+    { map_code: "overpass", map_full_name: "Overpass" },
+    { map_code: "dust2", map_full_name: "Dust II" },
+    { map_code: "ancient", map_full_name: "Ancient" },
+    { map_code: "anubis", map_full_name: "Anubis" },
+    { map_code: "nuke", map_full_name: "Nuke" },
+    { map_code: "tuscan", map_full_name: "Tuscan" },
+    { map_code: "cache", map_full_name: "Cache" },
+    { map_code: "cbble", map_full_name: "Cobblestone" },
+    { map_code: "train", map_full_name: "Train" },
   ];
 
   useEffect(() => {
     let ignore = false;
 
-    async function getGrenades() {
+    async function getGrenades(map_name) {
       setDocs(() => []);
       const querySnapshot = await getDocs(
-        collection(db, "maps", "dust_2", "grenades"),
+        collection(db, "maps", map_name, "grenades"),
       );
       if (!ignore) {
         querySnapshot.forEach((doc) => {
@@ -49,7 +85,9 @@ export default function GrenadesFilter() {
       };
     }
 
-    getGrenades();
+    map_names.forEach((map_name) => {
+      getGrenades(map_name.map_code);
+    });
   }, []);
 
   async function getMapPositions(map_name, checked) {
@@ -89,19 +127,22 @@ export default function GrenadesFilter() {
     return (
       (compostiteFilter.map_name.length === 0
         ? true
-        : compostiteFilter.map_name.includes(doc.map_name)) &&
+        : compostiteFilter.map_name.includes(doc.map.map_code)) &&
+      (compostiteFilter.side.length === 0
+        ? true
+        : compostiteFilter.side.includes(doc.side.side_code)) &&
       (compostiteFilter.tick_rate.length === 0
         ? true
         : compostiteFilter.tick_rate.includes(doc.tick_rate)) &&
       (compostiteFilter.type.length === 0
         ? true
-        : compostiteFilter.type.includes(doc.type)) &&
+        : compostiteFilter.type.includes(doc.type.type_code)) &&
       (compostiteFilter.from.length === 0
         ? true
-        : compostiteFilter.from.includes(doc.from)) &&
+        : compostiteFilter.from.includes(doc.from.position_code)) &&
       (compostiteFilter.to.length === 0
         ? true
-        : compostiteFilter.to.includes(doc.to))
+        : compostiteFilter.to.includes(doc.to.position_code))
     );
   });
 
@@ -113,15 +154,16 @@ export default function GrenadesFilter() {
             map_names={map_names}
             mapPositions={mapPositions}
             grenade_types={grenade_types}
+            sides={sides}
             handleFilter={handleFilter}
             getMapPositions={getMapPositions}
             mapPositionsLength={mapPositions.length}
           />
         </section>
       </div>
-      <section className="ml-32 self-center">
+      <section className="ml-32 grid auto-cols-max grid-flow-col self-center">
         {filteredProducts.map((doc) => {
-          return <GrenadeThumbnail key={doc.id} doc={doc}></GrenadeThumbnail>;
+          return <Card key={doc.id} doc={doc}></Card>;
         })}
       </section>
     </div>
