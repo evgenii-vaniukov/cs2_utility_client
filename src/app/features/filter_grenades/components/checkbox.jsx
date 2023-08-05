@@ -1,7 +1,7 @@
 export default function Checkbox({
   label,
   name,
-  position_full_name,
+  full_name,
   handleFilter,
   getMapPositions,
 }) {
@@ -25,7 +25,7 @@ export default function Checkbox({
 
       <div className="ml-3 text-sm leading-6">
         <label htmlFor="comments" className="font-medium text-gray-900">
-          {name === "to" || name === "from" ? position_full_name : label}
+          {full_name}
         </label>
       </div>
     </div>

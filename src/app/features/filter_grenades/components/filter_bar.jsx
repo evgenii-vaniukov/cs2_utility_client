@@ -4,6 +4,7 @@ export default function FilterBar({
   map_names,
   mapPositions,
   grenade_types,
+  sides,
   handleFilter,
   getMapPositions,
   mapPositionsLength,
@@ -11,8 +12,10 @@ export default function FilterBar({
   const maps = map_names.map((map) => {
     return (
       <Checkbox
-        key={map}
-        label={map}
+        key={map.map_code}
+        map_code={map.map_code}
+        full_name={map.map_full_name}
+        label={map.map_code}
         name="map_name"
         handleFilter={handleFilter}
         getMapPositions={getMapPositions}
@@ -20,12 +23,25 @@ export default function FilterBar({
     );
   });
 
-  const types = grenade_types.map((type) => {
+  const types_of_grenades = grenade_types.map((type) => {
     return (
       <Checkbox
-        key={type}
-        label={type}
+        key={type.grenade_code}
+        label={type.grenade_code}
+        full_name={type.grenade_full_name}
         name="type"
+        handleFilter={handleFilter}
+      ></Checkbox>
+    );
+  });
+
+  const side = sides.map((side) => {
+    return (
+      <Checkbox
+        key={side.side_code}
+        label={side.side_code}
+        full_name={side.side_full_name}
+        name="side"
         handleFilter={handleFilter}
       ></Checkbox>
     );
@@ -37,7 +53,7 @@ export default function FilterBar({
         key={position.position_code}
         label={position.position_code}
         name="from"
-        position_full_name={position.position_name}
+        full_name={position.position_name}
         handleFilter={handleFilter}
       ></Checkbox>
     );
@@ -49,13 +65,11 @@ export default function FilterBar({
         key={position.position_code}
         label={position.position_code}
         name="to"
-        position_full_name={position.position_name}
+        full_name={position.position_name}
         handleFilter={handleFilter}
       ></Checkbox>
     );
   });
-
-  const t = <p>try</p>;
 
   return (
     <>
@@ -64,10 +78,15 @@ export default function FilterBar({
         {maps}
       </section>
       <section>
+        <p>Side</p>
+        {side}
+      </section>
+      <section>
         <p>Tick Rate</p>
         <Checkbox
           key={64}
           label={64}
+          full_name={64}
           name="tick_rate"
           handleFilter={handleFilter}
         ></Checkbox>
@@ -75,12 +94,13 @@ export default function FilterBar({
           key={128}
           name="tick_rate"
           label={128}
+          full_name={128}
           handleFilter={handleFilter}
         ></Checkbox>
       </section>
       <section>
         <p>Grenade Type</p>
-        {types}
+        {types_of_grenades}
       </section>
       <section>
         {mapPositionsLength > 0 ? <p>From</p> : <></>}
