@@ -4,7 +4,6 @@ import Image from "next/image";
 export default function GrenadeDetails() {
   const location = useLocation();
   const { doc } = location.state;
-  console.log(doc);
 
   return (
     <div>
