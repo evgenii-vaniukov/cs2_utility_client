@@ -97,7 +97,6 @@ export default function GrenadesFilter() {
     );
 
     if (compostiteFilter) {
-      console.log(compostiteFilter);
       setCompositeFilter(compostiteFilter);
     }
   }, []);
