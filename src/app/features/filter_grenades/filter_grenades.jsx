@@ -93,17 +93,19 @@ export default function GrenadesFilter() {
 
   useEffect(() => {
     const compostiteFilter = JSON.parse(
-      localStorage.getItem("compostiteFilter"),
+      sessionStorage.getItem("compostiteFilter"),
     );
 
     if (compostiteFilter) {
-      console.log(compostiteFilter);
       setCompositeFilter(compostiteFilter);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("compostiteFilter", JSON.stringify(compostiteFilter));
+    sessionStorage.setItem(
+      "compostiteFilter",
+      JSON.stringify(compostiteFilter),
+    );
   }, [compostiteFilter]);
 
   async function getMapPositions(map_name, checked) {
@@ -167,6 +169,7 @@ export default function GrenadesFilter() {
       <div className="flex flex-col">
         <section>
           <FilterBar
+            compostiteFilter={compostiteFilter}
             map_names={map_names}
             mapPositions={mapPositions}
             grenade_types={grenade_types}

@@ -1,6 +1,7 @@
 import Checkbox from "./checkbox";
 
 export default function FilterBar({
+  compostiteFilter,
   map_names,
   mapPositions,
   grenade_types,
@@ -12,6 +13,7 @@ export default function FilterBar({
   const maps = map_names.map((map) => {
     return (
       <Checkbox
+        compostiteFilter={compostiteFilter}
         key={map.map_code}
         map_code={map.map_code}
         full_name={map.map_full_name}
@@ -26,6 +28,7 @@ export default function FilterBar({
   const types_of_grenades = grenade_types.map((type) => {
     return (
       <Checkbox
+        compostiteFilter={compostiteFilter}
         key={type.grenade_code}
         label={type.grenade_code}
         full_name={type.grenade_full_name}
@@ -38,6 +41,7 @@ export default function FilterBar({
   const side = sides.map((side) => {
     return (
       <Checkbox
+        compostiteFilter={compostiteFilter}
         key={side.side_code}
         label={side.side_code}
         full_name={side.side_full_name}
@@ -50,6 +54,7 @@ export default function FilterBar({
   const from = mapPositions.map((position) => {
     return (
       <Checkbox
+        compostiteFilter={compostiteFilter}
         key={position.position_code}
         label={position.position_code}
         name="from"
@@ -62,6 +67,7 @@ export default function FilterBar({
   const to = mapPositions.map((position) => {
     return (
       <Checkbox
+        compostiteFilter={compostiteFilter}
         key={position.position_code}
         label={position.position_code}
         name="to"
@@ -84,6 +90,7 @@ export default function FilterBar({
       <section>
         <p>Tick Rate</p>
         <Checkbox
+          compostiteFilter={compostiteFilter}
           key={64}
           label={64}
           full_name={64}
@@ -91,6 +98,7 @@ export default function FilterBar({
           handleFilter={handleFilter}
         ></Checkbox>
         <Checkbox
+          compostiteFilter={compostiteFilter}
           key={128}
           name="tick_rate"
           label={128}
