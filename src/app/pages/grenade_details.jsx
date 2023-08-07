@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
 import Image from "next/image";
+import { useLocation } from "react-router-dom";
 
 export default function GrenadeDetails() {
   const location = useLocation();
@@ -8,11 +8,9 @@ export default function GrenadeDetails() {
   return (
     <div>
       <h1>GrenadeDetails</h1>
-
       <p>Map: {doc.map.map_full_name}</p>
       <p>Type: {doc.type.type_full_name}</p>
       <p>Side: {doc.side.side_full_name}</p>
-
       <p>From: {doc.from.position_full_name}</p>
       <p>To: {doc.to.position_full_name}</p>
       <p>Tick: {doc.tick_rate}</p>

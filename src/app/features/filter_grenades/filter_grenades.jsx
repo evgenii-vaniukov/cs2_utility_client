@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
-
-import {
-  DocumentData,
-  collection,
-  doc,
-  getDocs,
-  query,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { db } from "../../../../firebase";
-import FilterBar from "./components/filter_bar";
-import GrenadeThumbnail from "./components/grenade_thumbnail";
+
 import Card from "./components/card";
+import FilterBar from "./components/filter_bar";
 
 const map_names = [
   { map_code: "mirage", map_full_name: "Mirage" },
-
   { map_code: "inferno", map_full_name: "Inferno" },
   { map_code: "overpass", map_full_name: "Overpass" },
   { map_code: "dust2", map_full_name: "Dust II" },
