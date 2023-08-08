@@ -28,7 +28,7 @@ export default function GrenadesFilter() {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [getGrenades, map_names, setDocs]);
 
   useEffect(() => {
     const compostiteFilter = JSON.parse(
