@@ -38,7 +38,7 @@ export default function GrenadesFilter() {
     if (compostiteFilter) {
       setCompositeFilter(compostiteFilter);
     }
-  }, []);
+  }, [setCompositeFilter]);
 
   useEffect(() => {
     sessionStorage.setItem(
