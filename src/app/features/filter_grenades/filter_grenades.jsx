@@ -1,26 +1,18 @@
-import { useEffect, useState } from "react";
-import {
-  grenade_types,
-  map_names,
-  sides,
-} from "./../../constants/filter_parameters";
-import { getGrenades } from "./../../repository/grenades_repository";
-import { getMapPositions } from "./../../repository/map_positions_repository";
+import { useEffect } from "react";
 
 import Card from "./components/card";
 import FilterBar from "./components/filter_bar";
+import { useGrenadesFilter } from "./context/filter_grenades_context";
 
 export default function GrenadesFilter() {
-  const [docs, setDocs] = useState([]);
-  const [compostiteFilter, setCompositeFilter] = useState({
-    map_name: [],
-    side: [],
-    tick_rate: [],
-    type: [],
-    from: [],
-    to: [],
-  });
-  const [mapPositions, setMapPositions] = useState([]);
+  const {
+    docs,
+    setDocs,
+    compostiteFilter,
+    setCompositeFilter,
+    map_names,
+    getGrenades,
+  } = useGrenadesFilter();
 
   useEffect(() => {
     let ignore = false;
@@ -55,19 +47,6 @@ export default function GrenadesFilter() {
     );
   }, [compostiteFilter]);
 
-  function handleFilter(checked, name, value) {
-    if (checked) {
-      setCompositeFilter({
-        ...compostiteFilter,
-        [name]: [...compostiteFilter[name], value],
-      });
-    } else {
-      setCompositeFilter({
-        ...compostiteFilter,
-        [name]: compostiteFilter[name].filter((position) => position !== value),
-      });
-    }
-  }
   var filteredProducts = docs.filter((doc) => {
     return (
       (compostiteFilter.map_name.length === 0
@@ -95,17 +74,7 @@ export default function GrenadesFilter() {
     <div className="flex">
       <div className="flex flex-col">
         <section>
-          <FilterBar
-            compostiteFilter={compostiteFilter}
-            map_names={map_names}
-            mapPositions={mapPositions}
-            grenade_types={grenade_types}
-            sides={sides}
-            handleFilter={handleFilter}
-            getMapPositions={getMapPositions}
-            setMapPositions={setMapPositions}
-            mapPositionsLength={mapPositions.length}
-          />
+          <FilterBar />
         </section>
       </div>
       <section className="ml-32 grid auto-cols-max grid-flow-col self-center">

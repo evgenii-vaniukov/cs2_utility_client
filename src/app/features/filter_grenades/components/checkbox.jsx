@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
+import { useGrenadesFilter } from "./../context/filter_grenades_context";
 
-export default function Checkbox({
-  compostiteFilter,
-  label,
-  name,
-  full_name,
-  handleFilter,
-  getMapPositions,
-  setMapPositions,
-}) {
+export default function Checkbox({ label, name, full_name }) {
+  const { compostiteFilter, handleFilter, getMapPositions, setMapPositions } =
+    useGrenadesFilter();
+
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
