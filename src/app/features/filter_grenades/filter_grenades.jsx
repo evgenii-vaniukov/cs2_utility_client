@@ -1,52 +1,14 @@
-import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../../../firebase";
+import {
+  grenade_types,
+  map_names,
+  sides,
+} from "./../../constants/filter_parameters";
+import { getGrenades } from "./../../repository/grenades_repository";
+import { getMapPositions } from "./../../repository/map_positions_repository";
 
 import Card from "./components/card";
 import FilterBar from "./components/filter_bar";
-
-const map_names = [
-  { map_code: "mirage", map_full_name: "Mirage" },
-  { map_code: "inferno", map_full_name: "Inferno" },
-  { map_code: "overpass", map_full_name: "Overpass" },
-  { map_code: "dust2", map_full_name: "Dust II" },
-  { map_code: "ancient", map_full_name: "Ancient" },
-  { map_code: "anubis", map_full_name: "Anubis" },
-  { map_code: "nuke", map_full_name: "Nuke" },
-  { map_code: "tuscan", map_full_name: "Tuscan" },
-  { map_code: "cache", map_full_name: "Cache" },
-  { map_code: "cbble", map_full_name: "Cobblestone" },
-  { map_code: "train", map_full_name: "Train" },
-];
-
-const sides = [
-  { side_code: "t_side", side_full_name: "Terrorists" },
-  { side_code: "ct_side", side_full_name: "Counter Terrorists" },
-];
-
-const grenade_types = [
-  {
-    grenade_code: "smoke",
-    grenade_full_name: "Smoke",
-  },
-  {
-    grenade_code: "flash",
-    grenade_full_name: "Flash",
-  },
-  {
-    grenade_code: "molotov",
-
-    grenade_full_name: "Molotov",
-  },
-  {
-    grenade_code: "he",
-    grenade_full_name: "High Explosive",
-  },
-  {
-    grenade_code: "one_way_smoke",
-    grenade_full_name: "One Way Smoke",
-  },
-];
 
 export default function GrenadesFilter() {
   const [docs, setDocs] = useState([]);
@@ -63,24 +25,17 @@ export default function GrenadesFilter() {
   useEffect(() => {
     let ignore = false;
 
-    async function getGrenades(map_name) {
-      setDocs(() => []);
-      const querySnapshot = await getDocs(
-        collection(db, "maps", map_name, "grenades"),
-      );
-      if (!ignore) {
-        querySnapshot.forEach((doc) => {
-          setDocs((docs) => [...docs, doc.data()]);
-        });
-      }
-      return () => {
-        ignore = true;
-      };
-    }
+    if (!ignore) {
+      setDocs([]);
 
-    map_names.forEach((map_name) => {
-      getGrenades(map_name.map_code);
-    });
+      map_names.forEach(async (map_name) => {
+        const grenades = await getGrenades(map_name.map_code);
+        setDocs((docs) => [...docs, ...grenades]);
+      });
+    }
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -99,26 +54,6 @@ export default function GrenadesFilter() {
       JSON.stringify(compostiteFilter),
     );
   }, [compostiteFilter]);
-
-  async function getMapPositions(map_name, checked) {
-    setMapPositions(() => []);
-    if (!checked) {
-      return;
-    }
-    const querySnapshot = await getDocs(
-      collection(db, "maps", map_name, "positions"),
-    );
-
-    querySnapshot.forEach((doc) => {
-      setMapPositions((docs) => [
-        ...docs,
-        {
-          position_code: doc.data().position_code,
-          position_name: doc.data().position_name,
-        },
-      ]);
-    });
-  }
 
   function handleFilter(checked, name, value) {
     if (checked) {
@@ -168,6 +103,7 @@ export default function GrenadesFilter() {
             sides={sides}
             handleFilter={handleFilter}
             getMapPositions={getMapPositions}
+            setMapPositions={setMapPositions}
             mapPositionsLength={mapPositions.length}
           />
         </section>

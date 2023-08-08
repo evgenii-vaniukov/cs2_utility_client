@@ -7,6 +7,7 @@ export default function Checkbox({
   full_name,
   handleFilter,
   getMapPositions,
+  setMapPositions,
 }) {
   const [checked, setChecked] = useState(false);
 
@@ -16,9 +17,17 @@ export default function Checkbox({
 
   useEffect(() => {
     if (name === "map_name") {
-      getMapPositions(label, checked);
+      setMapPositions([]);
+      (async () => {
+        if (checked) {
+          const mapPositions = await getMapPositions(label);
+          setMapPositions(mapPositions);
+        }
+      })();
+    } else {
+      return;
     }
-  }, [checked, label, name]);
+  }, [label, name, checked, getMapPositions, setMapPositions]);
 
   return (
     <div className="relative flex items-start">
@@ -29,7 +38,6 @@ export default function Checkbox({
           name === "map_name"
             ? (e) => {
                 handleFilter(e.target.checked, e.target.name, e.target.value);
-                // getMapPositions(label, e.target.checked);
                 setChecked(
                   compostiteFilter[name].includes(label) ? true : false,
                 );

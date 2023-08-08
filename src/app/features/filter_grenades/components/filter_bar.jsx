@@ -9,6 +9,7 @@ export default function FilterBar({
   handleFilter,
   getMapPositions,
   mapPositionsLength,
+  setMapPositions,
 }) {
   const maps = map_names.map((map) => {
     return (
@@ -21,6 +22,7 @@ export default function FilterBar({
         name="map_name"
         handleFilter={handleFilter}
         getMapPositions={getMapPositions}
+        setMapPositions={setMapPositions}
       ></Checkbox>
     );
   });
