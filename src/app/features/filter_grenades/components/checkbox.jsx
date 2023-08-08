@@ -1,14 +1,10 @@
-import { get } from "http";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useGrenadesFilter } from "./../context/filter_grenades_context";
 
-export default function Checkbox({
-  compostiteFilter,
-  label,
-  name,
-  full_name,
-  handleFilter,
-  getMapPositions,
-}) {
+export default function Checkbox({ label, name, full_name }) {
+  const { compostiteFilter, handleFilter, getMapPositions, setMapPositions } =
+    useGrenadesFilter();
+
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -17,9 +13,17 @@ export default function Checkbox({
 
   useEffect(() => {
     if (name === "map_name") {
-      getMapPositions(label, checked);
+      setMapPositions([]);
+      (async () => {
+        if (checked) {
+          const mapPositions = await getMapPositions(label);
+          setMapPositions(mapPositions);
+        }
+      })();
+    } else {
+      return;
     }
-  }, [checked, label, name]);
+  }, [label, name, checked, getMapPositions, setMapPositions]);
 
   return (
     <div className="relative flex items-start">
@@ -30,7 +34,6 @@ export default function Checkbox({
           name === "map_name"
             ? (e) => {
                 handleFilter(e.target.checked, e.target.name, e.target.value);
-                // getMapPositions(label, e.target.checked);
                 setChecked(
                   compostiteFilter[name].includes(label) ? true : false,
                 );

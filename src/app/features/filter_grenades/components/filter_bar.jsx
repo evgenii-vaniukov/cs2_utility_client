@@ -1,26 +1,18 @@
+import { useGrenadesFilter } from "./../context/filter_grenades_context";
 import Checkbox from "./checkbox";
 
-export default function FilterBar({
-  compostiteFilter,
-  map_names,
-  mapPositions,
-  grenade_types,
-  sides,
-  handleFilter,
-  getMapPositions,
-  mapPositionsLength,
-}) {
+export default function FilterBar() {
+  const { map_names, sides, grenade_types, mapPositions, mapPositionsLength } =
+    useGrenadesFilter();
+
   const maps = map_names.map((map) => {
     return (
       <Checkbox
-        compostiteFilter={compostiteFilter}
         key={map.map_code}
         map_code={map.map_code}
         full_name={map.map_full_name}
         label={map.map_code}
         name="map_name"
-        handleFilter={handleFilter}
-        getMapPositions={getMapPositions}
       ></Checkbox>
     );
   });
@@ -28,12 +20,10 @@ export default function FilterBar({
   const types_of_grenades = grenade_types.map((type) => {
     return (
       <Checkbox
-        compostiteFilter={compostiteFilter}
         key={type.grenade_code}
         label={type.grenade_code}
         full_name={type.grenade_full_name}
         name="type"
-        handleFilter={handleFilter}
       ></Checkbox>
     );
   });
@@ -41,12 +31,10 @@ export default function FilterBar({
   const side = sides.map((side) => {
     return (
       <Checkbox
-        compostiteFilter={compostiteFilter}
         key={side.side_code}
         label={side.side_code}
         full_name={side.side_full_name}
         name="side"
-        handleFilter={handleFilter}
       ></Checkbox>
     );
   });
@@ -54,12 +42,10 @@ export default function FilterBar({
   const from = mapPositions.map((position) => {
     return (
       <Checkbox
-        compostiteFilter={compostiteFilter}
         key={position.position_code}
         label={position.position_code}
         name="from"
         full_name={position.position_name}
-        handleFilter={handleFilter}
       ></Checkbox>
     );
   });
@@ -67,12 +53,10 @@ export default function FilterBar({
   const to = mapPositions.map((position) => {
     return (
       <Checkbox
-        compostiteFilter={compostiteFilter}
         key={position.position_code}
         label={position.position_code}
         name="to"
         full_name={position.position_name}
-        handleFilter={handleFilter}
       ></Checkbox>
     );
   });
@@ -90,20 +74,16 @@ export default function FilterBar({
       <section>
         <p>Tick Rate</p>
         <Checkbox
-          compostiteFilter={compostiteFilter}
           key={64}
           label={64}
           full_name={64}
           name="tick_rate"
-          handleFilter={handleFilter}
         ></Checkbox>
         <Checkbox
-          compostiteFilter={compostiteFilter}
           key={128}
           name="tick_rate"
           label={128}
           full_name={128}
-          handleFilter={handleFilter}
         ></Checkbox>
       </section>
       <section>
