@@ -1,15 +1,15 @@
 const map_names = [
-  { map_code: "mirage", map_full_name: "Mirage" },
+  // { map_code: "mirage", map_full_name: "Mirage" },
   { map_code: "inferno", map_full_name: "Inferno" },
-  { map_code: "overpass", map_full_name: "Overpass" },
+  // { map_code: "overpass", map_full_name: "Overpass" },
   { map_code: "dust2", map_full_name: "Dust II" },
   { map_code: "ancient", map_full_name: "Ancient" },
-  { map_code: "anubis", map_full_name: "Anubis" },
-  { map_code: "nuke", map_full_name: "Nuke" },
-  { map_code: "tuscan", map_full_name: "Tuscan" },
-  { map_code: "cache", map_full_name: "Cache" },
-  { map_code: "cbble", map_full_name: "Cobblestone" },
-  { map_code: "train", map_full_name: "Train" },
+  // { map_code: "anubis", map_full_name: "Anubis" },
+  // { map_code: "nuke", map_full_name: "Nuke" },
+  // { map_code: "tuscan", map_full_name: "Tuscan" },
+  // { map_code: "cache", map_full_name: "Cache" },
+  // { map_code: "cbble", map_full_name: "Cobblestone" },
+  // { map_code: "train", map_full_name: "Train" },
 ];
 
 const sides = [
