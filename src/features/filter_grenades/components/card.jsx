@@ -1,22 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Card({ doc }) {
-  const navigate = useNavigate();
-
   const [src, setSrc] = useState(doc.landing);
 
   return (
     <>
       <div
-        onClick={() => {
-          navigate("/grenade_details", {
-            state: {
-              doc: doc,
-            },
-          });
-        }}
         onMouseEnter={() => {
           setSrc(doc.throwing);
         }}

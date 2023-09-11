@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "../../firebase";
 
 export async function getGrenades(map_name) {
   const querySnapshot = await getDocs(

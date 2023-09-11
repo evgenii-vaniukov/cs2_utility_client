@@ -1,17 +1,10 @@
 "use client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Grenades from "./pages/grenades";
-import GrenadeDetails from "./pages/grenade_details";
+import Grenades from "../pages/grenades";
 
-export default function App() {
+export default function Home() {
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Grenades />} />
-          <Route path="/grenade_details" element={<GrenadeDetails />} />
-        </Routes>
-      </BrowserRouter>
+      <Grenades />
     </div>
   );
 }
