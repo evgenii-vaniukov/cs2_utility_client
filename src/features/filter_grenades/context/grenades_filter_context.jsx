@@ -3,9 +3,9 @@ import {
   grenade_types,
   map_names,
   sides,
-} from "./../../../constants/filter_parameters";
-import { getGrenades } from "./../../../repository/grenades_repository";
-import { getMapPositions } from "./../../../repository/map_positions_repository";
+} from "../../../constants/filter_parameters";
+import { getGrenades } from "../../../repository/grenades_repository";
+import { getMapPositions } from "../../../repository/map_positions_repository";
 
 export const GrenadesFilter = createContext(null);
 

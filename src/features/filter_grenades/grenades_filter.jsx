@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import Card from "./components/card";
 import FilterBar from "./components/filter_bar";
-import { useGrenadesFilter } from "./context/filter_grenades_context";
+import { useGrenadesFilter } from "./context/grenades_filter_context";
 
 export default function GrenadesFilter() {
   const {
