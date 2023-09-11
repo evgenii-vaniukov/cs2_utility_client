@@ -1,13 +1,11 @@
 "use client";
 import { grenade_types, map_names, sides } from "@/constants/filter_parameters";
-import { getGrenades } from "@/repository/grenades_repository";
 import { getMapPositions } from "@/repository/map_positions_repository";
 import { createContext, useContext, useState } from "react";
 
 export const GrenadesFilter = createContext(null);
 
 export function GrenadesFilterProvider({ children }) {
-  const [docs, setDocs] = useState([]);
   const [compostiteFilter, setCompositeFilter] = useState({
     map_name: [],
     side: [],
@@ -36,8 +34,6 @@ export function GrenadesFilterProvider({ children }) {
   return (
     <GrenadesFilter.Provider
       value={{
-        docs,
-        setDocs,
         compostiteFilter,
         setCompositeFilter,
         mapPositions,
@@ -46,7 +42,6 @@ export function GrenadesFilterProvider({ children }) {
         sides,
         grenade_types,
         handleFilter,
-        getGrenades,
         getMapPositions,
         mapPositionsLength,
       }}
