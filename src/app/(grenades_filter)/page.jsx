@@ -1,4 +1,3 @@
-"use client";
 import { GrenadesFilterProvider } from "@/features/filter_grenades/context/grenades_filter_context";
 import GrenadesFilter from "@/features/filter_grenades/grenades_filter.jsx";
 
