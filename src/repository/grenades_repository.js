@@ -4,6 +4,7 @@ import { db } from "../../firebase";
 export async function getGrenades(map_name) {
   const querySnapshot = await getDocs(
     collection(db, "maps", map_name, "grenades"),
+    // test
   );
 
   const grenades = [];
