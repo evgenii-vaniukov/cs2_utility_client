@@ -28,8 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/(grenades_filter)/page.jsx",
+    "src/app/grenades_filter/page.jsx",
     "src/app/pages/grenades.jsx"
-  ],
+, "src/app/(utility_collections)/page.jsx"  ],
   "exclude": ["node_modules"]
 }
