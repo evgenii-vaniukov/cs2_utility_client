@@ -4,13 +4,18 @@ import { useRouter } from "next/navigation";
 
 function CollectionsList({ utilityCollections }) {
   const router = useRouter();
-
   return (
-    <div onClick={() => router.push("/collectiondetails")}>
+    <div>
       {utilityCollections.map((utilityCollection) => (
+        //   console.log(utilityCollection.utilityCollectonId),
         <div
           key={utilityCollection.utilityCollectionId}
           className="border-2 border-indigo-600"
+          onClick={() => {
+            router.push(
+              `/collectiondetails/${utilityCollection.utilityCollectonId}`,
+            );
+          }}
         >
           <h2 className="text-2xl font-bold">{utilityCollection.label}</h2>
           <Image

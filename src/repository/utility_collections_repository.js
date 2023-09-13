@@ -30,4 +30,13 @@ const getUtilityCollections = async () => {
   }
 };
 
-export { getUtilityCollections };
+const getCollectionDetails = async (id) => {
+  try {
+    const response = await api.get(`/utilitycollections/${id}`);
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { getCollectionDetails, getUtilityCollections };
