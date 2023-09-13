@@ -7,7 +7,6 @@ function CollectionsList({ utilityCollections }) {
   return (
     <div>
       {utilityCollections.map((utilityCollection) => (
-        //   console.log(utilityCollection.utilityCollectonId),
         <div
           key={utilityCollection.utilityCollectionId}
           className="border-2 border-indigo-600"
