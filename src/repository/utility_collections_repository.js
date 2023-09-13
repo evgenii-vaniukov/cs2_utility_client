@@ -23,6 +23,7 @@ const api = axios.create({
 const getUtilityCollections = async () => {
   try {
     const response = await api.get("/utilitycollections");
+
     return response.data.data;
   } catch (error) {
     console.error(error);
