@@ -1,21 +1,26 @@
 import { getUtilityCollections } from "@/repository/utility_collections_repository";
+import Image from "next/image";
 import Link from "next/link";
 
 async function UtilityCollections() {
   const utilityCollections = await getUtilityCollections();
 
   return (
-    <div>
+    <>
       <h1>Welcome to UtilityCollections!</h1>
       {utilityCollections.map((utilityCollection) => (
-        <Link
-          key={utilityCollection.utilityCollectionId}
-          href="/collectiondetails"
-        >
-          {utilityCollection.teamCode}
-        </Link>
+        <div key={utilityCollection.utilityCollectionId}>
+          <Link href="/collectiondetails">{utilityCollection.label}</Link>
+          <Image
+            className="rounded-t-lg"
+            width={100}
+            height={100}
+            src={utilityCollection.thumbnail}
+            alt=""
+          />
+        </div>
       ))}
-    </div>
+    </>
   );
 }
 
