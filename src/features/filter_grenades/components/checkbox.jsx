@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useGrenadesFilter } from "./../context/filter_grenades_context";
+import { useGrenadesFilter } from "../context/grenades_filter_context";
 
 export default function Checkbox({ label, name, full_name }) {
   const { compostiteFilter, handleFilter, getMapPositions, setMapPositions } =

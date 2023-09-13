@@ -1,4 +1,4 @@
-import { useGrenadesFilter } from "./../context/filter_grenades_context";
+import { useGrenadesFilter } from "../context/grenades_filter_context";
 import Checkbox from "./checkbox";
 
 export default function FilterBar() {

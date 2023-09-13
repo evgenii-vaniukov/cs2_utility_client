@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState } from "react";
 
 export default function Card({ doc }) {
@@ -6,7 +5,10 @@ export default function Card({ doc }) {
 
   return (
     <>
-      <div
+      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+        {doc.map.map_full_name}
+      </h3>
+      {/* <div
         onMouseEnter={() => {
           setSrc(doc.throwing);
         }}
@@ -30,7 +32,7 @@ export default function Card({ doc }) {
           alt=""
         />
 
-        {/* <div className="p-5">
+        <div className="p-5">
           <div className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             <p>Map: {doc.map.map_full_name}</p>
             <p>Type: {doc.type.type_full_name}</p>
@@ -40,8 +42,8 @@ export default function Card({ doc }) {
             <p>To: {doc.to.position_full_name}</p>
             <p>Tick: {doc.tick_rate}</p>
           </div>
-        </div> */}
-      </div>
+        </div>
+      </div> */}
     </>
   );
 }

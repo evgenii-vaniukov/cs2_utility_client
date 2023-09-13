@@ -1,34 +1,13 @@
+"use client";
 import { useEffect } from "react";
 
 import Card from "./components/card";
 import FilterBar from "./components/filter_bar";
-import { useGrenadesFilter } from "./context/filter_grenades_context";
+import { useGrenadesFilter } from "./context/grenades_filter_context";
 
-export default function GrenadesFilter() {
-  const {
-    docs,
-    setDocs,
-    compostiteFilter,
-    setCompositeFilter,
-    map_names,
-    getGrenades,
-  } = useGrenadesFilter();
-
-  useEffect(() => {
-    let ignore = false;
-
-    if (!ignore) {
-      setDocs([]);
-
-      map_names.forEach(async (map_name) => {
-        const grenades = await getGrenades(map_name.map_code);
-        setDocs((docs) => [...docs, ...grenades]);
-      });
-    }
-    return () => {
-      ignore = true;
-    };
-  }, [getGrenades, map_names, setDocs]);
+export default function GrenadesFilter({ grenades }) {
+  const { compostiteFilter, setCompositeFilter, map_names } =
+    useGrenadesFilter();
 
   useEffect(() => {
     const compostiteFilter = JSON.parse(
@@ -47,7 +26,7 @@ export default function GrenadesFilter() {
     );
   }, [compostiteFilter]);
 
-  var filteredProducts = docs.filter((doc) => {
+  var filteredProducts = grenades.filter((doc) => {
     return (
       (compostiteFilter.map_name.length === 0
         ? true
