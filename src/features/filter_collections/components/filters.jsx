@@ -157,7 +157,8 @@ export default function Filters({ children }) {
               Counter-Strike 2 Utilities
             </h1>
             <p className="mt-4 text-base text-gray-500">
-              Checkout out the most effective utilities for Counter-Strike 2.
+              Struggle to learn utilities from short videos?<br></br> Check the
+              most effective CS 2 utilities in a convenient GIF format.
             </p>
           </div>
 
