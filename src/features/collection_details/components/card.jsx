@@ -1,10 +1,20 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 export default function Card({ utility }) {
+  const [src, setSrc] = useState(utility.landing);
   return (
-    <div>
+    <div
+      onMouseEnter={() => {
+        setSrc(utility.throwing);
+      }}
+      onMouseLeave={() => {
+        setSrc(utility.landing);
+      }}
+    >
       <div className="aspect-h-2 aspect-w-3  w-full overflow-hidden rounded-lg">
         <Image
-          src={utility.landing}
+          src={src}
           alt="Drawstring top with elastic loop closure and textured interior padding."
           fill
           layout="cover"

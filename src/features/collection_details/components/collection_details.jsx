@@ -21,7 +21,7 @@ export default function CollectionDetails({ collectionUtilities }) {
 
           <div className="mt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-8">
             {collectionUtilities.map((utility) => (
-              <Card key={utility.utilityId} utility={utility}></Card>
+              <Card key={utility.utilityId} utility={utility} />
             ))}
           </div>
         </section>
