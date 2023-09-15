@@ -15,7 +15,13 @@ export default function Card({ utilityCollection, onClick }) {
       </div>
       <div className="max-w-xl">
         <div className="mt-8 flex items-center gap-x-4 text-xs">
-          <p className="relative z-10 rounded-full bg-yellow-200 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
+          <p
+            className={`relative z-10 rounded-full ${
+              utilityCollection.teamCode == "T_SIDE"
+                ? "bg-yellow-200"
+                : "bg-blue-300"
+            } px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100`}
+          >
             {utilityCollection.teamCode}
           </p>
           <time
