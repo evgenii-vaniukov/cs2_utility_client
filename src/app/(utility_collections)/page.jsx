@@ -1,4 +1,4 @@
-import Dashboard from "@/features/filter_collections/components/dashboard";
+import Dashboard from "@/features/filter_collections/dashboard";
 
 import { getUtilityCollections } from "@/repository/utility_collections_repository";
 
