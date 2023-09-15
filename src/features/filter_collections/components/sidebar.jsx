@@ -11,7 +11,6 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
-import CollectionsList from "./collections_list";
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -31,7 +30,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Sidebar({ utilityCollections }) {
+export default function Sidebar({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -226,20 +225,7 @@ export default function Sidebar({ utilityCollections }) {
                     ))}
                   </ul>
                 </li>
-                <li className="-mx-6 mt-auto">
-                  <a
-                    href="#"
-                    className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
-                  >
-                    <img
-                      className="h-8 w-8 rounded-full bg-gray-800"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
-                    <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Tom Cook</span>
-                  </a>
-                </li>
+                <li className="-mx-6 mt-auto"></li>
               </ul>
             </nav>
           </div>
@@ -257,20 +243,10 @@ export default function Sidebar({ utilityCollections }) {
           <div className="flex-1 text-sm font-semibold leading-6 text-white">
             Dashboard
           </div>
-          <a href="#">
-            <span className="sr-only">Your profile</span>
-            <img
-              className="h-8 w-8 rounded-full bg-gray-800"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            />
-          </a>
         </div>
 
         <main className="py-10 lg:pl-72">
-          <div className="px-4 sm:px-6 lg:px-8">
-            <CollectionsList utilityCollections={utilityCollections} />
-          </div>
+          <div className="px-4 sm:px-6 lg:px-8">{children}</div>
         </main>
       </div>
     </>
