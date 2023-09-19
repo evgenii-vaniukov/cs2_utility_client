@@ -22,14 +22,6 @@ export default function Card({ utility }) {
       </div>
       <p className="mt-8 text-base text-gray-500">{utility.label}</p>
       <div className="mt-4 flex flex-col  justify-between text-sm text-gray-500">
-        <p>
-          Precision of crosshair alignment:{" "}
-          {utility.precisionOfCrosshairAlignment}
-        </p>
-        <p>
-          Precision of position alignment:{" "}
-          {utility.precisionOfCrosshairAlignment}
-        </p>
         <p>Bind: {utility.bind}</p>
       </div>
     </div>
