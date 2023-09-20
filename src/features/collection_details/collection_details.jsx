@@ -1,4 +1,4 @@
-import Card from "./card";
+import Card from "./components/card";
 export default function CollectionDetails({
   collectionUtilities,
   utilitiesOrder,

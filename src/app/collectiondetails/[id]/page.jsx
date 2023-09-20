@@ -1,4 +1,4 @@
-import CollectionDetails from "@/features/collection_details/components/collection_details";
+import CollectionDetails from "@/features/collection_details/collection_details";
 import { getCollectionDetails } from "@/repository/utility_collections_repository";
 
 async function CollectionDetailsPage({ params: { id } }) {
