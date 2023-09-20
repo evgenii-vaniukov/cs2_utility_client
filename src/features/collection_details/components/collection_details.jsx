@@ -2,7 +2,7 @@ import Card from "./card";
 export default function CollectionDetails({ collectionUtilities }) {
   return (
     <div className="bg-gray-50">
-      <div className="mx-auto h-screen max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
         {/* Details section */}
         <section aria-labelledby="details-heading">
           <div className="flex flex-col items-center text-center">
@@ -18,13 +18,12 @@ export default function CollectionDetails({ collectionUtilities }) {
               long shifts at work, and tough travel schedules.
             </p>
           </div>
-
-          <div className="mt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-8">
-            {collectionUtilities.map((utility) => (
-              <Card key={utility.utilityId} utility={utility} />
-            ))}
-          </div>
         </section>
+      </div>
+      <div className="mx-auto max-w-2xl px-4 pb-8 sm:px-6 sm:pb-16 lg:max-w-7xl lg:px-8">
+        {collectionUtilities.map((utility) => (
+          <Card key={utility.utilityId} utility={utility} />
+        ))}
       </div>
     </div>
   );

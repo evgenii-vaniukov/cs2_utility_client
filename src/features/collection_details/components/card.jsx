@@ -2,26 +2,25 @@
 import Image from "next/image";
 import { useState } from "react";
 export default function Card({ utility }) {
-  const [src, setSrc] = useState(utility.landing);
+  const thumbnail =
+    utility.landing === "" ? utility.crosshairAlignment : utility.landing;
+  const [src, setSrc] = useState(thumbnail);
   return (
     <div
       onMouseEnter={() => {
         setSrc(utility.throwing);
       }}
       onMouseLeave={() => {
-        setSrc(utility.landing);
+        setSrc(thumbnail);
       }}
+      className="mt-12 flex sm:mt-8 lg:mt-16"
     >
-      <div className="aspect-h-2 aspect-w-3  w-full overflow-hidden rounded-lg">
-        <Image
-          src={src}
-          alt="Drawstring top with elastic loop closure and textured interior padding."
-          fill
-          layout="cover"
-        />
+      <div className=" aspect-h-4 aspect-w-10  w-4/6 overflow-hidden rounded-lg">
+        <Image src={src} alt="Not loaded." fill layout="cover" />
       </div>
-      <p className="mt-8 text-base text-gray-500">{utility.label}</p>
-      <div className="mt-4 flex flex-col  justify-between text-sm text-gray-500">
+      <div className="flex w-2/6 flex-col">
+        <p className="mt-8 text-base text-gray-500">{utility.label}</p>
+
         <p>Bind: {utility.bind}</p>
       </div>
     </div>
