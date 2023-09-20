@@ -13,12 +13,11 @@ export default function CollectionDetails({
               id="details-heading"
               className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
             >
-              The Fine Details
+              Utilities
             </h2>
             <p className="mt-3 max-w-3xl text-lg text-gray-600">
-              Our patented padded snack sleeve construction protects your
-              favorite treats from getting smooshed during all-day adventures,
-              long shifts at work, and tough travel schedules.
+              The utilities are in suggested to be thrown in the presented order
+              below.
             </p>
           </div>
         </section>

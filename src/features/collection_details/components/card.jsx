@@ -18,7 +18,7 @@ export default function Card({ utility, idx }) {
           // onMouseLeave={() => {
           //   setSrc(thumbnail);
           // }}
-          className=" aspect-h-4 aspect-w-10  w-4/6 overflow-hidden rounded-lg"
+          className=" aspect-h-4 aspect-w-9  w-4/6 overflow-hidden rounded-lg"
         >
           <Image src={src} alt="Not loaded." fill layout="cover" />
         </div>
