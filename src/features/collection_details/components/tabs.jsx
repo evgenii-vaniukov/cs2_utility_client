@@ -13,13 +13,12 @@ export default function Tabs({ utility, setSrc }) {
       url: utility.crosshairAlignment,
       current: false,
     },
-    { name: "Throwing", url: utility.throwing, current: false },
-
     {
       name: "Position Alignment",
       url: utility.positionAlignment,
       current: false,
     },
+    { name: "Throwing", url: utility.throwing, current: false },
   ];
   const filteredTabs = tabss.filter((tab) => tab.url !== "");
   filteredTabs[0].current = true;
