@@ -6,7 +6,10 @@ async function CollectionDetailsPage({ params: { id } }) {
 
   return (
     <div>
-      <CollectionDetails collectionUtilities={collectionUtilities} />
+      <CollectionDetails
+        collectionUtilities={collectionUtilities.data}
+        utilitiesOrder={collectionUtilities.utilitiesOrder}
+      />
     </div>
   );
 }

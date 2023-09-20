@@ -1,5 +1,8 @@
 import Card from "./card";
-export default function CollectionDetails({ collectionUtilities }) {
+export default function CollectionDetails({
+  collectionUtilities,
+  utilitiesOrder,
+}) {
   return (
     <div className="bg-gray-50">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
@@ -21,9 +24,14 @@ export default function CollectionDetails({ collectionUtilities }) {
         </section>
       </div>
       <div className="mx-auto max-w-2xl px-4 pb-8 sm:px-6 sm:pb-16 lg:max-w-7xl lg:px-8">
-        {collectionUtilities.map((utility) => (
-          <Card key={utility.utilityId} utility={utility} />
-        ))}
+        {utilitiesOrder.map((grenadeTypeCode, idx) => {
+          const utility = collectionUtilities.find(
+            (utility) => utility.grenadeTypeCode === grenadeTypeCode,
+          );
+          return (
+            <Card key={utility.utilityId} utility={utility} idx={idx + 1} />
+          );
+        })}
       </div>
     </div>
   );

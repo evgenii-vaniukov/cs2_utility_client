@@ -20,7 +20,7 @@ const getUtilityCollections = async () => {
 const getCollectionDetails = async (id) => {
   try {
     const response = await api.get(`/utilitycollections/${id}`);
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
