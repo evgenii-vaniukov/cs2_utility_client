@@ -24,12 +24,13 @@ export default function Checkbox({ option, optionIdx, section }) {
         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
         onChange={(e) => {
           handleFilter(e.target.checked, section.id, option.value);
-          // setChecked(
-          //   compostiteFilter[`${section.id}`].includes(option.value)
-          //     ? true
-          //     : false,
-          // );
+          setChecked(
+            compostiteFilter[`${section.id}`].includes(option.value)
+              ? true
+              : false,
+          );
         }}
+        checked={checked}
       />
       <label
         htmlFor={`${section.id}-${optionIdx}-mobile`}

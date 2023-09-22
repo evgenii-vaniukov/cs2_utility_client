@@ -3,7 +3,8 @@ import { filters } from "@/constants/collection_filters";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { useCollectionsFilter } from "../context/filter_collections_context";
 import Checkbox from "./checkbox";
 
 function classNames(...classes) {
@@ -12,6 +13,25 @@ function classNames(...classes) {
 
 export default function Filters({ children }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  const { compostiteFilter, setCompositeFilter } = useCollectionsFilter();
+  useEffect(() => {
+    const compostiteFilter = JSON.parse(
+      sessionStorage.getItem("compostiteFilter"),
+    );
+    console.log(compostiteFilter);
+
+    if (compostiteFilter) {
+      setCompositeFilter(compostiteFilter);
+    }
+  }, [setCompositeFilter]);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "compostiteFilter",
+      JSON.stringify(compostiteFilter),
+    );
+  }, [compostiteFilter]);
 
   return (
     <div className="bg-white">
