@@ -19,7 +19,6 @@ export default function Filters({ children }) {
     const compostiteFilter = JSON.parse(
       sessionStorage.getItem("compostiteFilter"),
     );
-    console.log(compostiteFilter);
 
     if (compostiteFilter) {
       setCompositeFilter(compostiteFilter);

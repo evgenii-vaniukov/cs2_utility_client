@@ -11,7 +11,6 @@ export default function Checkbox({ option, optionIdx, section }) {
     setChecked(
       compostiteFilter[`${section.id}`].includes(option.value) ? true : false,
     );
-    console.log(checked);
   }, [checked, compostiteFilter, option.value, section.id]);
 
   return (
