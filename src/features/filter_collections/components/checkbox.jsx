@@ -1,26 +1,34 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCollectionsFilter } from "../context/filter_collections_context";
 
-export default function Checkbox({ sectionId, option, optionIdx, section }) {
-  //   const { compostiteFilter, handleFilter, getMapPositions, setMapPositions } =
-  //     useCollectionsFilter();
+export default function Checkbox({ option, optionIdx, section }) {
+  const { compostiteFilter, handleFilter } = useCollectionsFilter();
 
   const [checked, setChecked] = useState(false);
 
-  //   useEffect(() => {
-  //     setChecked(compostiteFilter[name].includes(label) ? true : false);
-  //   }, [compostiteFilter, label, name]);
+  useEffect(() => {
+    setChecked(
+      compostiteFilter[`${section.id}`].includes(option.value) ? true : false,
+    );
+    console.log(checked);
+  }, [checked, compostiteFilter, option.value, section.id]);
 
   return (
     <div className="flex items-center">
       <input
-        id={`${sectionId}-${optionIdx}-mobile`}
+        id={`${section.id}-${optionIdx}-mobile`}
         name={`${section.id}[]`}
         defaultValue={option.value}
         type="checkbox"
         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-        onClick={(e) => {
-          console.log("clicked");
+        onChange={(e) => {
+          handleFilter(e.target.checked, section.id, option.value);
+          // setChecked(
+          //   compostiteFilter[`${section.id}`].includes(option.value)
+          //     ? true
+          //     : false,
+          // );
         }}
       />
       <label
