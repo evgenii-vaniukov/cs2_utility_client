@@ -1,41 +1,11 @@
 "use client";
+import { filters } from "@/constants/collection_filters";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { useCollectionsFilter } from "../context/filter_collections_context";
 import Checkbox from "./checkbox";
-
-const filters = [
-  {
-    id: "map",
-    name: "Map",
-    options: [
-      { value: "DE_INFERNO", label: "Inferno" },
-      { value: "DE_MIRAGE", label: "Mirage" },
-      { value: "DE_OVERPASS", label: "Overpass" },
-      { value: "DE_ANUBIS", label: "Anubis" },
-      { value: "DE_ANCIENT", label: "Ancient" },
-      { value: "DE_NUKE", label: "Nuke" },
-      { value: "DE_VERTIGO", label: "Vertigo" },
-    ],
-  },
-  {
-    id: "side",
-    name: "Side",
-    options: [
-      { value: "T_SIDE", label: "Terrorists" },
-      { value: "CT_SIDE", label: "Counter-Terrorists" },
-    ],
-  },
-  {
-    id: "plant",
-    name: "Plant",
-    options: [
-      { value: "A", label: "Plant A" },
-      { value: "B", label: "Plant B" },
-    ],
-  },
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -43,6 +13,24 @@ function classNames(...classes) {
 
 export default function Filters({ children }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  const { compostiteFilter, setCompositeFilter } = useCollectionsFilter();
+  useEffect(() => {
+    const compostiteFilter = JSON.parse(
+      sessionStorage.getItem("compostiteFilter"),
+    );
+
+    if (compostiteFilter) {
+      setCompositeFilter(compostiteFilter);
+    }
+  }, [setCompositeFilter]);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "compostiteFilter",
+      JSON.stringify(compostiteFilter),
+    );
+  }, [compostiteFilter]);
 
   return (
     <div className="bg-white">
@@ -122,29 +110,10 @@ export default function Filters({ children }) {
                                 {section.options.map((option, optionIdx) => (
                                   <Checkbox
                                     key={option.value}
-                                    sectionId={section.id}
                                     section={section}
                                     option={option}
                                     optionIdx={optionIdx}
                                   />
-                                  // <div
-                                  //   key={option.value}
-                                  //   className="flex items-center"
-                                  // >
-                                  //   <input
-                                  //     id={`${section.id}-${optionIdx}-mobile`}
-                                  //     name={`${section.id}[]`}
-                                  //     defaultValue={option.value}
-                                  //     type="checkbox"
-                                  //     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                  //   />
-                                  //   <label
-                                  //     htmlFor={`${section.id}-${optionIdx}-mobile`}
-                                  //     className="ml-3 text-sm text-gray-500"
-                                  //   >
-                                  //     {option.label}
-                                  //   </label>
-                                  // </div>
                                 ))}
                               </div>
                             </Disclosure.Panel>

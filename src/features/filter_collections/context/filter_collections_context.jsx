@@ -1,5 +1,5 @@
 "use client";
-import { grenade_types, map_names, sides } from "@/constants/filter_parameters";
+
 import { createContext, useContext, useState } from "react";
 
 export const CollectionsFilter = createContext(null);
@@ -8,19 +8,19 @@ export function CollectionsFilterProvider({ children }) {
   const [compostiteFilter, setCompositeFilter] = useState({
     map: [],
     side: [],
-    palnt: [],
+    plant: [],
   });
 
-  function handleFilter(checked, name, value) {
+  function handleFilter(checked, id, value) {
     if (checked) {
       setCompositeFilter({
         ...compostiteFilter,
-        [name]: [...compostiteFilter[name], value],
+        [id]: [...compostiteFilter[id], value],
       });
     } else {
       setCompositeFilter({
         ...compostiteFilter,
-        [name]: compostiteFilter[name].filter((position) => position !== value),
+        [id]: compostiteFilter[id].filter((arrayItem) => arrayItem !== value),
       });
     }
   }
@@ -29,9 +29,7 @@ export function CollectionsFilterProvider({ children }) {
       value={{
         compostiteFilter,
         setCompositeFilter,
-        map_names,
-        sides,
-        grenade_types,
+
         handleFilter,
       }}
     >
