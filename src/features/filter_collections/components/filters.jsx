@@ -6,7 +6,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useEffect, useState } from "react";
 import { useCollectionsFilter } from "../context/filter_collections_context";
 import Checkbox from "./checkbox";
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -45,6 +44,21 @@ export default function Filters({ children, likesCount }) {
   useEffect(() => {
     sessionStorage.setItem("liked", JSON.stringify(liked));
   }, [liked]);
+
+  async function handler() {
+    const res = await fetch("https://cs2-utility-backend.onrender.com/likes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ count: liked ? likesCount - 1 : likesCount + 1 }),
+    });
+  }
+
+  // async function handler() {
+  //   const res = await updateLikesCount(JSON.stringify({ count: 7 }));
+  //   console.log(res);
+  // }
 
   return (
     <div className="bg-white">
@@ -161,7 +175,10 @@ export default function Filters({ children, likesCount }) {
                 <div className="flex flex-row items-center">
                   <button
                     type="button"
-                    onClick={() => setLiked(!liked)}
+                    onClick={() => {
+                      setLiked(!liked);
+                      handler();
+                    }}
                     className={`mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium 
                     ${liked ? "bg-yellow-500" : "bg-white"} ${
                       liked ? "text-white" : "text-yellow-400"
