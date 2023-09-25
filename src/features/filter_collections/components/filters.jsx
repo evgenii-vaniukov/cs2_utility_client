@@ -166,7 +166,8 @@ export default function Filters({ children, likesCount }) {
             <div className="flex items-center">
               <div className="flex flex-col items-start rounded-lg border p-4 text-slate-700">
                 <h3>
-                  Want more collections?<br></br>Than Like and send feedback!
+                  Want to see more collections?<br></br>Than Like and send
+                  feedback!
                 </h3>
                 <div className="mt-2 flex flex-row items-center">
                   <Feedback />
