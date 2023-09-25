@@ -1,5 +1,6 @@
 "use client";
 import { filters } from "@/constants/collection_filters";
+import { updateLikesCount } from "@/repository/analytics/likes/likes_repository";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -49,16 +50,9 @@ export default function Filters({ children, likesCount }) {
   }, [liked]);
 
   async function updateLikes() {
-    const res = await fetch(
-      "https://cs2-utility-analytics.onrender.com/likes",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ count: liked ? likesCount : likesCount + 1 }),
-      },
-    );
+    const res = await updateLikesCount({
+      count: liked ? likesCount : likesCount + 1,
+    });
     setLikes(liked ? likesCount : likesCount + 1);
   }
 

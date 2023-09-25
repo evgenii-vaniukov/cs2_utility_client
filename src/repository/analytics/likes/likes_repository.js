@@ -9,4 +9,13 @@ const getLikesCount = async () => {
   }
 };
 
-export { getLikesCount };
+const updateLikesCount = async (body) => {
+  try {
+    const response = await api.post("/likes", body);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { getLikesCount, updateLikesCount };

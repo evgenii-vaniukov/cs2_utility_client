@@ -1,8 +1,8 @@
 import { api } from "../api";
 
-const postFeedback = async (body, headers) => {
+const postFeedback = async (body) => {
   try {
-    const response = await api.post("/feedback", body, headers);
+    const response = await api.post("/feedback", body);
     return response.data;
   } catch (error) {
     console.error(error);
