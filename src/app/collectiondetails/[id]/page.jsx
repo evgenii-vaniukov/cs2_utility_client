@@ -1,5 +1,5 @@
 import CollectionDetails from "@/features/collection_details/collection_details";
-import { getCollectionDetails } from "@/repository/utility_collections_repository";
+import { getCollectionDetails } from "@/repository/utility_collections/utility_collections_repository";
 
 async function CollectionDetailsPage({ params: { id } }) {
   const collectionUtilities = await getCollectionDetails(id);
