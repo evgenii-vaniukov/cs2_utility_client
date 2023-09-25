@@ -35,7 +35,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function FeedbackTextarea() {
+export function FeedbackTextarea({ setFeedback, setMood }) {
   const [selected, setSelected] = useState(moods[2]);
 
   return (
@@ -53,6 +53,7 @@ export function FeedbackTextarea() {
               className="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
               placeholder="Add your comment..."
               defaultValue={""}
+              onChange={(e) => setFeedback(e.target.value)}
             />
 
             {/* Spacer element to match the height of the toolbar */}
@@ -122,6 +123,7 @@ export function FeedbackTextarea() {
                                   )
                                 }
                                 value={mood}
+                                onClick={() => setMood(mood.name)}
                               >
                                 <div className="flex items-center">
                                   <div

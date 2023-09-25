@@ -23,7 +23,7 @@ function Feedback() {
           <Dialog.Description className="mb-5 mt-[10px] text-[15px] leading-normal text-mauve11">
             Your feedback is EXTREMELY important!
           </Dialog.Description>
-          <FeedbackTextarea />
+          <FeedbackTextarea setFeedback={setFeedback} setMood={setMood} />
           <div className="mt-[25px] flex justify-end">
             <Dialog.Close asChild>
               <button
