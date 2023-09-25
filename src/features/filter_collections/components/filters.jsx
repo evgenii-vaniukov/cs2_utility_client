@@ -49,13 +49,16 @@ export default function Filters({ children, likesCount }) {
   }, [liked]);
 
   async function updateLikes() {
-    const res = await fetch("https://cs2-utility-backend.onrender.com/likes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const res = await fetch(
+      "https://cs2-utility-analytics.onrender.com/likes",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ count: liked ? likesCount : likesCount + 1 }),
       },
-      body: JSON.stringify({ count: liked ? likesCount : likesCount + 1 }),
-    });
+    );
     setLikes(liked ? likesCount : likesCount + 1);
   }
 
