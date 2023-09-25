@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useCollectionsFilter } from "../context/filter_collections_context";
 
-export default function Checkbox({ option, optionIdx, section }) {
+export function Checkbox({ option, optionIdx, section }) {
   const { compostiteFilter, handleFilter } = useCollectionsFilter();
 
   const [checked, setChecked] = useState(false);

@@ -5,7 +5,8 @@ import { ChevronDownIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useEffect, useState } from "react";
 import { useCollectionsFilter } from "../context/filter_collections_context";
-import Checkbox from "./checkbox";
+import { Checkbox } from "./checkbox";
+import { Feedback } from "./feedback";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -162,27 +163,28 @@ export default function Filters({ children, likesCount }) {
               </h1>
               <p className="mt-4 text-base text-gray-500">
                 Struggle to learn utilities from short videos?<br></br> Check
-                the most effective CS 2 utilities in a convenient GIF format.
+                the most effective CS 2 utility combos in a convenient format.
               </p>
             </div>
             <div className="flex items-center">
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-start rounded-lg border p-4 text-slate-700">
                 <h3>
                   Want more collections?<br></br>Than Like and send feedback!
                 </h3>
-                <div className="flex flex-row items-center">
+                <div className="mt-2 flex flex-row items-center">
+                  <Feedback />
                   <button
                     type="button"
                     onClick={() => {
                       setLiked(!liked);
                       updateLikes();
                     }}
-                    className={`mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium 
-                    ${liked ? "bg-yellow-500" : "bg-white"} ${
+                    className={`ml-3 mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium shadow-md
+                    ${liked ? "bg-yellow-400" : "bg-white"} ${
                       liked ? "text-white" : "text-yellow-400"
                     } 
 
-                     hover:bg-yellow-500 hover:text-white `}
+                     hover:bg-yellow-400 hover:text-white `}
                   >
                     <svg
                       class="h-5 w-5"

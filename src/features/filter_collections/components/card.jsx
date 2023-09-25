@@ -15,7 +15,7 @@ export default function Card({ utilityCollection, onClick }) {
       <div className="max-w-xl">
         <div className="mt-8 flex items-center gap-x-4 text-xs">
           <p
-            className={`relative z-10 rounded-full ${
+            className={`rounded-full ${
               utilityCollection.teamCode == "T_SIDE"
                 ? "bg-yellow-200"
                 : "bg-blue-300"
