@@ -1,11 +1,14 @@
 "use client";
 import { filters } from "@/constants/collection_filters";
+import { updateLikesCount } from "@/repository/analytics/likes/likes_repository";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useEffect, useState } from "react";
 import { useCollectionsFilter } from "../context/filter_collections_context";
-import Checkbox from "./checkbox";
+import { Checkbox } from "./checkbox";
+import { Feedback } from "./feedback";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -13,6 +16,7 @@ function classNames(...classes) {
 export default function Filters({ children, likesCount }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(likesCount);
 
   const { compostiteFilter, setCompositeFilter } = useCollectionsFilter();
 
@@ -45,20 +49,12 @@ export default function Filters({ children, likesCount }) {
     sessionStorage.setItem("liked", JSON.stringify(liked));
   }, [liked]);
 
-  async function handler() {
-    const res = await fetch("https://cs2-utility-backend.onrender.com/likes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ count: liked ? likesCount - 1 : likesCount + 1 }),
+  async function updateLikes() {
+    const res = await updateLikesCount({
+      count: liked ? likesCount : likesCount + 1,
     });
+    setLikes(liked ? likesCount : likesCount + 1);
   }
-
-  // async function handler() {
-  //   const res = await updateLikesCount(JSON.stringify({ count: 7 }));
-  //   console.log(res);
-  // }
 
   return (
     <div className="bg-white">
@@ -164,27 +160,29 @@ export default function Filters({ children, likesCount }) {
               </h1>
               <p className="mt-4 text-base text-gray-500">
                 Struggle to learn utilities from short videos?<br></br> Check
-                the most effective CS 2 utilities in a convenient GIF format.
+                the most effective CS 2 utility combos in a convenient format.
               </p>
             </div>
             <div className="flex items-center">
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-start rounded-lg border p-4 text-slate-700">
                 <h3>
-                  Want more collections?<br></br>Than Like and send feedback!
+                  Want to see more collections?<br></br>Than Like and send
+                  feedback!
                 </h3>
-                <div className="flex flex-row items-center">
+                <div className="mt-2 flex flex-row items-center">
+                  <Feedback />
                   <button
                     type="button"
                     onClick={() => {
                       setLiked(!liked);
-                      handler();
+                      updateLikes();
                     }}
-                    className={`mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium 
-                    ${liked ? "bg-yellow-500" : "bg-white"} ${
+                    className={`ml-3 mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium shadow-md
+                    ${liked ? "bg-yellow-400" : "bg-white"} ${
                       liked ? "text-white" : "text-yellow-400"
                     } 
 
-                     hover:bg-yellow-500 hover:text-white `}
+                     hover:bg-yellow-400 hover:text-white `}
                   >
                     <svg
                       class="h-5 w-5"
@@ -196,7 +194,7 @@ export default function Filters({ children, likesCount }) {
                       <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
                     </svg>
                   </button>
-                  <h2>{likesCount}</h2>
+                  <h2>{likes}</h2>
                 </div>
               </div>
             </div>

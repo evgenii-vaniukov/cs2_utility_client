@@ -2,7 +2,7 @@ export default function Card({ utilityCollection, onClick }) {
   return (
     <article
       onClick={onClick}
-      className="flex flex-col items-start justify-between rounded-xl p-3 shadow-md"
+      className="flex flex-col items-start justify-between rounded-xl p-3 shadow-md transition duration-150 ease-in-out hover:cursor-pointer hover:bg-gray-50 hover:shadow-lg"
     >
       {/* <div className="relative aspect-[16/9] w-full rounded-2xl sm:aspect-[2/1] lg:aspect-[3/2]">
         <Image
@@ -15,7 +15,7 @@ export default function Card({ utilityCollection, onClick }) {
       <div className="max-w-xl">
         <div className="mt-8 flex items-center gap-x-4 text-xs">
           <p
-            className={`relative z-10 rounded-full ${
+            className={`rounded-full ${
               utilityCollection.teamCode == "T_SIDE"
                 ? "bg-yellow-200"
                 : "bg-blue-300"
