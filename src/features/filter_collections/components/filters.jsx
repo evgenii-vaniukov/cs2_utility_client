@@ -6,6 +6,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useEffect, useState } from "react";
 import { useCollectionsFilter } from "../context/filter_collections_context";
 import Checkbox from "./checkbox";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -13,6 +14,7 @@ function classNames(...classes) {
 export default function Filters({ children, likesCount }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(likesCount);
 
   const { compostiteFilter, setCompositeFilter } = useCollectionsFilter();
 
@@ -45,20 +47,16 @@ export default function Filters({ children, likesCount }) {
     sessionStorage.setItem("liked", JSON.stringify(liked));
   }, [liked]);
 
-  async function handler() {
+  async function updateLikes() {
     const res = await fetch("https://cs2-utility-backend.onrender.com/likes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ count: liked ? likesCount - 1 : likesCount + 1 }),
+      body: JSON.stringify({ count: liked ? likesCount : likesCount + 1 }),
     });
+    setLikes(liked ? likesCount : likesCount + 1);
   }
-
-  // async function handler() {
-  //   const res = await updateLikesCount(JSON.stringify({ count: 7 }));
-  //   console.log(res);
-  // }
 
   return (
     <div className="bg-white">
@@ -177,7 +175,7 @@ export default function Filters({ children, likesCount }) {
                     type="button"
                     onClick={() => {
                       setLiked(!liked);
-                      handler();
+                      updateLikes();
                     }}
                     className={`mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium 
                     ${liked ? "bg-yellow-500" : "bg-white"} ${
@@ -196,7 +194,7 @@ export default function Filters({ children, likesCount }) {
                       <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
                     </svg>
                   </button>
-                  <h2>{likesCount}</h2>
+                  <h2>{likes}</h2>
                 </div>
               </div>
             </div>

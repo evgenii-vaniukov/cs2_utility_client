@@ -9,18 +9,4 @@ const getLikesCount = async () => {
   }
 };
 
-const updateLikesCount = async (body) => {
-  try {
-    console.log(body);
-    const response = await api.post("/likes", body, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export { getLikesCount, updateLikesCount };
+export { getLikesCount };
