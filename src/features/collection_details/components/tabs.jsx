@@ -1,11 +1,10 @@
 "use client";
 import { useState } from "react";
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Tabs({ utility, setSrc }) {
+export default function Tabs({ utility, setSrc, setCurrentTab }) {
   const tabss = [
     { name: "Landing", url: utility.landing, current: true },
     {
@@ -66,6 +65,7 @@ export default function Tabs({ utility, setSrc }) {
                 });
                 newTabs[tabIdx].current = true;
                 setTabs(newTabs);
+                setCurrentTab(tab.name);
                 setSrc(tab.url);
               }}
             >
