@@ -153,17 +153,21 @@ export default function Filters({ children, likesCount }) {
         </Transition.Root>
 
         <main className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-          <div className="flex justify-between border-b border-gray-200 pb-10">
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+          <div className="flex flex-col border-b border-gray-200 pb-10 md:flex-row md:justify-between">
+            <div className="flex flex-col items-center md:items-start">
+              <h1 className="text-2xl font-bold tracking-tight text-slate-700 md:text-4xl">
                 Counter-Strike 2 Utilities
               </h1>
-              <p className="mt-4 text-base text-gray-500">
-                Struggle to learn utilities from short videos?<br></br> Check
-                the most effective CS 2 utility combos in a convenient format.
-              </p>
+              <div className="mt-4 text-base text-gray-500">
+                <p>Struggle to learn utilities from short videos?</p>
+
+                <p>
+                  Check the most effective CS 2 utility <br></br>combos in a
+                  convenient format.
+                </p>
+              </div>
             </div>
-            <div className="flex items-center">
+            <div className="mt-4 flex items-center self-center">
               <div className="flex flex-col items-start rounded-lg border p-4 text-slate-700">
                 <h3>
                   Want to see more collections?<br></br>Than Like and send
