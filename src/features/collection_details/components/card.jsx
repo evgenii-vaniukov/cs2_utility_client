@@ -12,7 +12,7 @@ export default function Card({ utility, idx }) {
     <div className="mt-12  sm:mt-8 lg:mt-16">
       <Divider>{idx}</Divider>
       <div className="mt-12 flex sm:mt-8 lg:mt-16">
-        <div className=" aspect-h-4 aspect-w-9  w-4/6 overflow-hidden rounded-lg">
+        <div className="aspect-h-2 aspect-w-5 w-7/12 overflow-hidden rounded-lg">
           {currentTab === "Throwing" ? (
             <iframe
               width="560"
@@ -27,7 +27,7 @@ export default function Card({ utility, idx }) {
             <Image src={src} alt="Not loaded." fill layout="cover" />
           )}
         </div>
-        <div className="flex w-2/6 flex-col px-4">
+        <div className="flex w-5/12 flex-col px-4">
           <Tabs
             utility={utility}
             setSrc={setSrc}
