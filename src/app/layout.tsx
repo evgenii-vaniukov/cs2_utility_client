@@ -19,7 +19,7 @@ export default function RootLayout({
     <html /*className="bg-gray-800 text-gray-400"*/ lang="en">
       <body className={inter.className}>
         {children}
-        <Analytics />
+        <Analytics mode="production" />
       </body>
     </html>
   );
