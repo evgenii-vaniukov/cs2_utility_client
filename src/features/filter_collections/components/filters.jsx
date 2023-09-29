@@ -163,14 +163,15 @@ export default function Filters({ children, likesCount }) {
 
                 <p>
                   Check the most effective CS 2 utility <br></br>combos in a
-                  convenient format.
+                  convenient format.<br></br>The service currently works best on
+                  desktop.
                 </p>
               </div>
             </div>
             <div className="mt-4 flex items-center self-center">
               <div className="flex flex-col items-start rounded-lg border p-4 text-slate-700">
                 <h3>
-                  Want to see more collections?<br></br>Than Like and send
+                  Want to see more collections?<br></br>Then Like and send
                   feedback!
                 </h3>
                 <div className="mt-2 flex flex-row items-center">
