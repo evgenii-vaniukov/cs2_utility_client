@@ -1,3 +1,5 @@
+"use client";
+import { Feedback } from "@/components/feedback";
 import Card from "./components/card";
 export default function CollectionDetails({
   collectionUtilities,
@@ -15,12 +17,13 @@ export default function CollectionDetails({
               Utilities
             </h2>
             <p className="mt-3 max-w-3xl text-lg text-gray-600">
-              The utilities are in suggested to be thrown in the presented order
-              below.
+              The utilities are suggested to be thrown in the presented order.
             </p>
+            <Feedback />
           </div>
         </section>
       </div>
+
       <div className="mx-auto max-w-2xl px-4 pb-8 sm:px-6 sm:pb-16 lg:max-w-7xl lg:px-8">
         {utilitiesOrder.map((grenadeTypeCode, idx) => {
           const utility = collectionUtilities.find(

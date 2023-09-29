@@ -1,4 +1,5 @@
 "use client";
+import { Feedback } from "@/components/feedback";
 import { filters } from "@/constants/collection_filters";
 import { updateLikesCount } from "@/repository/analytics/likes/likes_repository";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
@@ -7,7 +8,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useEffect, useState } from "react";
 import { useCollectionsFilter } from "../context/filter_collections_context";
 import { Checkbox } from "./checkbox";
-import { Feedback } from "./feedback";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

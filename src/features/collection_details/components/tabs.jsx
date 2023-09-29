@@ -36,8 +36,22 @@ export default function Tabs({ utility, setSrc, setCurrentTab }) {
           className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
           defaultValue={tabs.find((tab) => tab.current).name}
         >
-          {tabs.map((tab) => (
-            <option key={tab.name}>{tab.name}</option>
+          {tabs.map((tab, tabIdx) => (
+            <option
+              key={tab.name}
+              onClick={() => {
+                const newTabs = [...tabs];
+                newTabs.forEach((tab) => {
+                  tab.current = false;
+                });
+                newTabs[tabIdx].current = true;
+                setTabs(newTabs);
+                setCurrentTab(tab.name);
+                setSrc(tab.url);
+              }}
+            >
+              {tab.name}
+            </option>
           ))}
         </select>
       </div>
