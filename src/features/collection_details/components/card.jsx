@@ -33,9 +33,13 @@ export default function Card({ utility, idx }) {
             setSrc={setSrc}
             setCurrentTab={setCurrentTab}
           />
-          <p className="mt-8 text-base text-gray-500">{utility.label}</p>
+          <p className="mt-8 text-sm text-gray-500 md:text-base">
+            {utility.label}
+          </p>
 
-          <p>Bind: {utility.bind}</p>
+          <p className="mt-8 text-sm text-gray-600 md:text-base">
+            Bind: {utility.bind}
+          </p>
         </div>
       </div>
     </div>
