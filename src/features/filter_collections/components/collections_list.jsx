@@ -6,7 +6,7 @@ import Card from "./card";
 export default function CollectionsList({ utilityCollections }) {
   const router = useRouter();
 
-  const { compostiteFilter, setCompositeFilter } = useCollectionsFilter();
+  const { compostiteFilter } = useCollectionsFilter();
 
   var filteredCollections = utilityCollections.filter((collection) => {
     return (
