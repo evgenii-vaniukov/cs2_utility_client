@@ -35,20 +35,30 @@ export default function Tabs({ utility, setSrc, setCurrentTab }) {
           name="tabs"
           className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
           defaultValue={tabs.find((tab) => tab.current).name}
+          onChange={(e) => {
+            const newTabs = [...tabs];
+            newTabs.forEach((tab) => {
+              tab.current = false;
+            });
+            newTabs.find((tab) => tab.name === e.target.value).current = true;
+            setTabs(newTabs);
+            setCurrentTab(e.target.value);
+            setSrc(newTabs.find((tab) => tab.name === e.target.value).url);
+          }}
         >
           {tabs.map((tab, tabIdx) => (
             <option
               key={tab.name}
-              onClick={() => {
-                const newTabs = [...tabs];
-                newTabs.forEach((tab) => {
-                  tab.current = false;
-                });
-                newTabs[tabIdx].current = true;
-                setTabs(newTabs);
-                setCurrentTab(tab.name);
-                setSrc(tab.url);
-              }}
+              // onClick={() => {
+              //   const newTabs = [...tabs];
+              //   newTabs.forEach((tab) => {
+              //     tab.current = false;
+              //   });
+              //   newTabs[tabIdx].current = true;
+              //   setTabs(newTabs);
+              //   setCurrentTab(tab.name);
+              //   setSrc(tab.url);
+              // }}
             >
               {tab.name}
             </option>
