@@ -160,47 +160,44 @@ export default function Filters({ children, likesCount }) {
               </h1>
               <div className="mt-4 text-base text-gray-500">
                 <p>Struggle to learn utilities from short videos?</p>
-
+                <div className="mt-2"></div>
                 <p>
                   Check the most effective CS 2 utility <br></br>combos in a
-                  convenient format.<br></br>The service currently works best on
-                  desktop.
+                  convenient format.
                 </p>
+                <div className="mt-4 text-base text-gray-500"></div>
+                <p>The service currently works best on desktop.</p>
               </div>
             </div>
-            <div className="mt-4 flex items-center self-center">
-              <div className="flex flex-col items-start rounded-lg border p-4 text-slate-700">
-                <h3>
-                  Want to see more collections?<br></br>Then Like and send
-                  feedback!
-                </h3>
-                <div className="mt-2 flex flex-row items-center">
-                  <Feedback />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setLiked(!liked);
-                      updateLikes();
-                    }}
-                    className={`ml-3 mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium shadow-md
+            <div className="mx-8 my-4 flex flex-col items-center justify-center rounded-lg border p-4 text-slate-700 md:mx-0">
+              <h3>
+                Want to see more collections?<br></br>Then Like and send
+                feedback!
+              </h3>
+              <div className="mt-2 flex flex-row items-center">
+                <Feedback />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLiked(!liked);
+                    updateLikes();
+                  }}
+                  className={`ml-3 mr-2 inline-flex items-center rounded-lg border p-2.5 text-center text-sm font-medium shadow-md
                     ${liked ? "bg-yellow-400" : "bg-white"} ${
                       liked ? "text-white" : "text-yellow-400"
-                    } 
-
-                     hover:bg-yellow-400 hover:text-white `}
+                    } `}
+                >
+                  <svg
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 18 18"
                   >
-                    <svg
-                      className="h-5 w-5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 18 18"
-                    >
-                      <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
-                    </svg>
-                  </button>
-                  <h2>{likes}</h2>
-                </div>
+                    <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
+                  </svg>
+                </button>
+                <h2>{likes}</h2>
               </div>
             </div>
           </div>
