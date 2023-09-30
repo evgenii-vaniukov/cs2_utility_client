@@ -158,7 +158,7 @@ export default function Filters({ children, likesCount }) {
               <h1 className="text-2xl font-bold tracking-tight text-slate-700 md:text-4xl">
                 Counter-Strike 2 Utilities
               </h1>
-              <div className="mt-4 text-base text-gray-500">
+              <div className="mt-4 flex w-11/12 flex-col items-start text-base text-gray-500">
                 <p>Struggle to learn utilities from short videos?</p>
                 <div className="mt-2"></div>
                 <p>
@@ -169,7 +169,7 @@ export default function Filters({ children, likesCount }) {
                 <p>The service currently works best on desktop.</p>
               </div>
             </div>
-            <div className="mx-8 my-4 flex flex-col items-center justify-center rounded-lg border p-4 text-slate-700 md:mx-0">
+            <div className="mx-2 my-4 flex flex-col items-center justify-center rounded-lg border p-4 text-slate-700 md:mx-0">
               <h3>
                 Want to see more collections?<br></br>Then Like and send
                 feedback!
