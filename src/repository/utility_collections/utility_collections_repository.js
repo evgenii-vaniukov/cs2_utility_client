@@ -1,6 +1,7 @@
+import { cache } from "react";
 import { api } from "./api";
 
-const getUtilityCollections = async () => {
+const getUtilityCollections = cache(async () => {
   try {
     const response = await api.get("/utilitycollections");
 
@@ -8,7 +9,7 @@ const getUtilityCollections = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+});
 
 const getCollectionDetails = async (id) => {
   try {
