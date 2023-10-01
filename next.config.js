@@ -2,9 +2,10 @@
 const nextConfig = {
   env: {
     apiUrl:
-      process.env.NODE_ENV === "development"
-        ? process.env.DEV_API_URL
-        : process.env.API_URL,
+      process.env.NODE_ENV === "production" ||
+      process.env.NODE_ENV === "preview"
+        ? process.env.API_URL
+        : process.env.DEV_API_URL,
   },
   images: {
     remotePatterns: [
