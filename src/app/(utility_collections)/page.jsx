@@ -2,7 +2,7 @@ import Dashboard from "@/features/filter_collections/dashboard";
 
 import { getLikesCount } from "@/repository/analytics/likes/likes_repository";
 import { getUtilityCollections } from "@/repository/utility_collections/utility_collections_repository";
-export const revalidate = 60;
+export const revalidate = 120;
 
 async function UtilityCollections() {
   const utilityCollections = await getUtilityCollections();
