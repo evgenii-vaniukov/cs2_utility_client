@@ -165,8 +165,6 @@ export default function Filters({ children, likesCount }) {
                   Check the most effective CS 2 utility <br></br>combos in a
                   convenient format.
                 </p>
-                <div className="mt-4 text-base text-gray-500"></div>
-                <p>The service currently works best on desktop.</p>
               </div>
             </div>
             <div className="mx-2 my-4 flex flex-col items-center justify-center rounded-lg border p-4 text-slate-700 md:mx-0">

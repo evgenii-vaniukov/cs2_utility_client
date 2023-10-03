@@ -24,7 +24,7 @@ export default function CollectionsList({ utilityCollections }) {
   return (
     <div className="bg-white py-2 sm:py-2">
       <div className="max-w-7xl px-6 lg:px-2">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 md:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-20">
           {filteredCollections.map((utilityCollection) => (
             <Card
               key={utilityCollection.utilityCollectionId}
