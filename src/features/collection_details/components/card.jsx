@@ -18,7 +18,7 @@ export default function Card({ utility, idx }) {
               src={src}
               title="YouTube video player"
               frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
           ) : (
