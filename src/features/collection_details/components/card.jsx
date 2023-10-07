@@ -15,8 +15,6 @@ export default function Card({ utility, idx }) {
         <div className="aspect-h-3 aspect-w-4 w-full overflow-hidden rounded-lg md:aspect-h-2 md:aspect-w-5 md:w-7/12">
           {currentTab === "Throwing" ? (
             <iframe
-              width="560"
-              height="315"
               src={src}
               title="YouTube video player"
               frameborder="0"
