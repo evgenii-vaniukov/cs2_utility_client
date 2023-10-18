@@ -2,7 +2,7 @@ const navigation = {
   social: [
     {
       name: "Discord",
-      href: "https://discord.gg/RQ3EgamV",
+      href: "https://discord.gg/MmZda7MKEy",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
