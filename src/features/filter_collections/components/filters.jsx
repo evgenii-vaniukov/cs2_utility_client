@@ -162,8 +162,8 @@ export default function Filters({ children, likesCount }) {
                 <p>Struggle to learn utilities from short videos?</p>
                 <div className="mt-2"></div>
                 <p>
-                  Check the most effective CS 2 utility combos<br></br> in a
-                  convenient format.
+                  Check the most effective CS 2 utility combos in a convenient
+                  format.
                 </p>
                 <a
                   href="https://discord.gg/MmZda7MKEy"
